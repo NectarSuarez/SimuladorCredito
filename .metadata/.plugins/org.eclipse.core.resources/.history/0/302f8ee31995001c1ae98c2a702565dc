@@ -1,0 +1,18 @@
+package com.credito.ba.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.credito.ba.VO.Producto;
+import com.credito.ba.DAO.creditoDAO;
+
+public class creditoService
+{
+
+	creditoDAO CreDAO;
+	public int SetProducto(Producto prod)
+	{
+		return creditoDAO.SetProducto(prod);
+	}
+	
+}

@@ -1,0 +1,5 @@
+package com.credito.ba.VO;
+
+public class Cotizacion {
+
+}

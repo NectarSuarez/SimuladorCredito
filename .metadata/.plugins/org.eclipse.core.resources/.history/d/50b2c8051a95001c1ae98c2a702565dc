@@ -1,0 +1,9 @@
+package com.credito.ba.controller;
+
+@ControllerAdvice
+@RestController
+@RequestMapping("Persona")
+public class creditoController
+{
+	
+}

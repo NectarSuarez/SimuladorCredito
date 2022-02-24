@@ -1,0 +1,10 @@
+package com.credito.ba.VO;
+
+public class Producto
+{
+	private int id;
+	private String sku;
+	private String nombre;
+	private String descripcion;
+	private int precio;
+}

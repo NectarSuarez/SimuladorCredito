@@ -1,0 +1,9 @@
+package com.credito.ba.VO;
+
+public class plazo
+{
+	private int id;
+	private int semanas;
+	private double tasaNormal;
+	private double tasaPuntual;
+}

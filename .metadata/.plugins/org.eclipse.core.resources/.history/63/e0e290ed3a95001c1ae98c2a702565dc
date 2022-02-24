@@ -1,0 +1,14 @@
+package com.credito.ba.VO;
+
+public class Cotizacion
+{
+	private int precio;
+	private double tasaNormal;
+	private double tasaPuntual;
+	private double abonoNormal;
+	private double abonoPuntual;
+	
+	
+	
+	
+}

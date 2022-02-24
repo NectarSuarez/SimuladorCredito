@@ -1,0 +1,114 @@
+package com.credito.ba.DAO;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Types;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.SqlOutParameter;
+import org.springframework.jdbc.core.SqlParameter;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcCall;
+import org.springframework.stereotype.Repository;
+
+import com.credito.ba.VO.plazo;
+import com.credito.ba.VO.Producto;
+
+@Repository
+public class creditoDAO
+{
+
+	@Autowired
+	DataSource dataSource;
+	
+	private JdbcTemplate jdbcTemplate;
+	
+	private final String SetProducto  		= "SetProducto";
+	private final String GetProducto  		= "GetProducto";
+	private final String UpdateProducto  	= "UpdateProducto";
+	private final String DeleteProducto  	= "DeleteProducto";
+	private final String SetPlazo  			= "SetPlazo";
+	private final String GetPlazo  			= "GetPlazo";
+	private final String UpdatePlazo  		= "UpdatePlazo";
+	private final String DeletePlazo  		= "DeletePlazo";
+	
+	private String Cursor = "Cursor";
+	
+	
+	public int SetProducto(Producto prod)
+	{
+		int ret = 0;
+		
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
+		
+		RowMapper<String> mapConfig = null;
+		
+		try
+		{
+			SqlParameterSource SPParametros = new MapSqlParameterSource()
+					.addValue("inSKU", prod.getSku())
+					.addValue("inNombre", prod.getNombre())
+					.addValue("inDescripcion", prod.getDescripcion())
+					.addValue("inPrecio", prod.getPrecio());
+			
+			SimpleJdbcCall stored = new SimpleJdbcCall(this.jdbcTemplate)
+					.withProcedureName(SetProducto)
+					.returningResultSet(Cursor, mapConfig);
+					
+			stored.withoutProcedureColumnMetaDataAccess();
+			stored.declareParameters(
+					new SqlParameter("inSKU", Types.VARCHAR),
+					new SqlParameter("inNombre", Types.VARCHAR),
+					new SqlParameter("inDescripcion", Types.VARCHAR),
+					new SqlParameter("inPrecio", Types.INTEGER),
+					new SqlOutParameter("outId", Types.INTEGER)
+					);
+					
+			Map<String, Object> out = stored.execute(SPParametros);
+			
+			Integer outId = (Integer) out.get("outId");
+			
+			if (outId > 0)
+				ret = outId;
+			
+		} catch (Exception e)
+		{
+			System.out.print(e.getMessage());
+		}
+		
+		
+		return ret;
+	}
+	
+	public List<Producto> GetProducto(String SKU)
+	{
+		List<Producto> Pro = new ArrayList<Producto>();
+		
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
+		RowMapper<Producto> mapaConfiguraciones = null;
+		try
+		{
+			
+		}
+		catch (Exception e)
+		{
+			mapaConfiguraciones = (RS, rowNum) ->
+			{
+				
+			};
+		}
+		
+		
+		return Pro;
+	}
+	
+	
+	
+}

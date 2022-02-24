@@ -1,0 +1,44 @@
+package com.credito.ba.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.credito.ba.VO.Producto;
+import com.credito.ba.VO.plazo;
+import com.credito.ba.DAO.creditoDAO;
+
+@Service
+public class creditoService
+{
+
+	@Autowired
+	creditoDAO CreDAO;
+
+	public int SetProducto(Producto prod)
+	{
+		return CreDAO.SetProducto(prod);
+	}
+	
+	public List<Producto> GetProducto(String SKU, String Nombre)
+	{
+		return CreDAO.GetProducto(SKU, Nombre);
+	}
+	
+	public int UpdateProducto(Producto prod)
+	{
+		return CreDAO.UpdateProducto(prod);
+	}
+
+	public int DeleteProducto(Producto prod)
+	{
+		return CreDAO.DeleteProducto(prod);
+	}
+	
+	public int SetPlazo(plazo Pla)
+	{
+		return CreDAO.SetPlazo(Pla);
+	}
+	
+}

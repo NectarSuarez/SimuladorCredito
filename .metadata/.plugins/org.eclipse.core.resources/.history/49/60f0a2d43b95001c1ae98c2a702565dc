@@ -1,0 +1,78 @@
+package com.credito.ba.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.credito.ba.VO.Cotizacion;
+import com.credito.ba.VO.Producto;
+import com.credito.ba.VO.plazo;
+import com.credito.ba.DAO.creditoDAO;
+
+@Service
+public class creditoService
+{
+
+	@Autowired
+	creditoDAO CreDAO;
+
+	public int SetProducto(Producto prod)
+	{
+		return CreDAO.SetProducto(prod);
+	}
+	
+	public List<Producto> GetProducto(String SKU, String Nombre)
+	{
+		return CreDAO.GetProducto(SKU, Nombre);
+	}
+	
+	public int UpdateProducto(Producto prod)
+	{
+		return CreDAO.UpdateProducto(prod);
+	}
+
+	public int DeleteProducto(Producto prod)
+	{
+		return CreDAO.DeleteProducto(prod);
+	}
+	
+	public int SetPlazo(plazo Pla)
+	{
+		return CreDAO.SetPlazo(Pla);
+	}
+
+	public List<plazo> GetPlazo(plazo pla)
+	{
+		return CreDAO.GetPlazo(pla);
+	}
+	
+	public int UpdatePlazo(plazo pla)
+	{
+		return CreDAO.UpdatePlazo(pla);
+	}
+
+	public int DeletePlazo(plazo pla)
+	{
+		return CreDAO.DeletePlazo(pla);
+	}	
+	
+	public Cotizacion GetCotizacion(Cotizacion cot)
+	{
+		Cotizacion Cot = new Cotizacion();
+		double AbonoNor = 0;
+		double AbonoPun = 0;
+		
+		// Operación para Abono Normal
+		
+		
+		// Operación para Abono Puntual
+		
+		Cot.setPrecio(cot.getPrecio());
+		Cot.setAbonoNormal(AbonoNor);
+		Cot.setAbonoPuntual(AbonoPun);
+		
+		return Cot;
+	}
+}
